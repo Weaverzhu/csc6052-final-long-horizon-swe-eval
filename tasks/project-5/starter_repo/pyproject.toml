@@ -1,0 +1,6 @@
+[project]
+name = "config-manager"
+version = "0.1.0"
+description = "Starter scaffold for the staged configuration policy benchmark."
+requires-python = ">=3.11"
+dependencies = []

@@ -1,0 +1,9 @@
+.venv/
+.agent_runs/
+.agent_outputs/
+.agent_workspaces/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/

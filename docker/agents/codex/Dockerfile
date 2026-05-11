@@ -1,0 +1,35 @@
+FROM node:22-bookworm-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple \
+    NPM_CONFIG_UPDATE_NOTIFIER=false \
+    HOME=/codex-home
+
+RUN if [ -f /etc/apt/sources.list.d/debian.sources ]; then \
+        sed -i 's|http://deb.debian.org/debian|http://mirrors.tuna.tsinghua.edu.cn/debian|g; s|http://security.debian.org/debian-security|http://mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list.d/debian.sources; \
+    fi \
+    && if [ -f /etc/apt/sources.list ]; then \
+        sed -i 's|http://deb.debian.org/debian|http://mirrors.tuna.tsinghua.edu.cn/debian|g; s|http://security.debian.org/debian-security|http://mirrors.tuna.tsinghua.edu.cn/debian-security|g' /etc/apt/sources.list; \
+    fi \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends bash bubblewrap ca-certificates git python-is-python3 python3 python3-pip python3-venv ripgrep sqlite3 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m pip install --break-system-packages --upgrade pip
+
+RUN python3 -m pip install --break-system-packages uv
+
+RUN npm install -g @openai/codex
+
+RUN mkdir -p /codex-home/.codex /opt/codex-default
+
+COPY config.toml /opt/codex-default/config.toml
+COPY entrypoint.sh /usr/local/bin/codex-agent-entrypoint
+RUN chmod +x /usr/local/bin/codex-agent-entrypoint
+
+WORKDIR /workspace
+
+ENTRYPOINT ["/usr/local/bin/codex-agent-entrypoint"]
+CMD ["codex"]

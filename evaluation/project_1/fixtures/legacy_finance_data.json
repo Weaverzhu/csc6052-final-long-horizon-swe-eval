@@ -1,0 +1,68 @@
+{
+  "transactions": [
+    {
+      "date": "2024-01-05",
+      "amount": "2500.00",
+      "category": "salary",
+      "description": "January salary"
+    },
+    {
+      "date": "2024-01-10",
+      "amount": "-45.50",
+      "category": "food",
+      "description": "Groceries"
+    },
+    {
+      "date": "2024-01-10",
+      "amount": "-15.00",
+      "category": "food",
+      "description": "Coffee beans"
+    },
+    {
+      "date": "2024-01-20",
+      "amount": "-800.00",
+      "category": "rent",
+      "description": "January rent"
+    },
+    {
+      "date": "2024-02-01",
+      "amount": "2500.00",
+      "category": "salary",
+      "description": "February salary"
+    },
+    {
+      "date": "2024-02-03",
+      "amount": "-60.00",
+      "category": "food",
+      "description": "Dinner out"
+    },
+    {
+      "date": "2024-02-10",
+      "amount": "-900.00",
+      "category": "rent",
+      "description": "February rent"
+    }
+  ],
+  "budgets": [
+    {
+      "month": "2024-01",
+      "category": "food",
+      "limit": "60.00"
+    },
+    {
+      "month": "2024-01",
+      "category": "rent",
+      "limit": "850.00"
+    },
+    {
+      "month": "2024-02",
+      "category": "food",
+      "limit": "50.00"
+    },
+    {
+      "month": "2024-02",
+      "category": "rent",
+      "limit": "950.00"
+    }
+  ]
+}

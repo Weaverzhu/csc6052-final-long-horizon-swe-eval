@@ -1,0 +1,56 @@
+experiment_id: csc6052-final-main
+runs_root: .agent_runs
+output_dir: .agent_outputs
+default_runs_per_project: 1
+start_stage: 1
+end_stage: 6
+fail_fast: false
+output: true
+
+agents:
+  - id: codex-gpt55
+    framework: codex
+    model: gpt-5.5
+    env:
+      CODEX_HOME:
+        from_env: CODEX_HOME
+        default: ~/.codex
+
+  - id: mini-deepseek-v4-flash
+    framework: mini-swe-agent
+    model: deepseek-v4-flash
+    env:
+      API_KEY:
+        from_env: API_KEY
+      API_BASE: https://api.deepseek.com
+      MODEL_BACKEND: openai-compat
+  - id: mini-deepseek-v4-pro
+    framework: mini-swe-agent
+    model: deepseek-v4-pro
+    env:
+      API_KEY:
+        from_env: API_KEY
+      API_BASE: https://api.deepseek.com
+      MODEL_BACKEND: openai-compat
+  - id: claude-deepseek-v4-flash
+    framework: claude
+    model: deepseek-v4-flash
+    env:
+      CLAUDE_PROVIDER: deepseek
+      DEEPSEEK_API_KEY:
+        from_env: API_KEY
+  - id: claude-deepseek-v4-pro
+    framework: claude
+    model: deepseek-v4-pro
+    env:
+      CLAUDE_PROVIDER: deepseek
+      DEEPSEEK_API_KEY:
+        from_env: API_KEY
+
+
+projects:
+  - slug: project-1
+  - slug: project-2
+  - slug: project-3
+  - slug: project-4
+  - slug: project-5
